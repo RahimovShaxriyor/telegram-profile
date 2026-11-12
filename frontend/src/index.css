@@ -1,0 +1,205 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens. Neutral, slightly cool greys + one calm indigo accent.
+ * Semantic colours (success/warning/danger) are muted so the UI never shouts.
+ */
+:root {
+  --background: oklch(0.985 0.002 264);
+  --foreground: oklch(0.22 0.012 265);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.975 0.003 264);
+  --muted: oklch(0.962 0.004 264);
+  --muted-foreground: oklch(0.53 0.014 264);
+  --subtle-foreground: oklch(0.66 0.012 264);
+  --border: oklch(0.918 0.005 264);
+  --border-strong: oklch(0.87 0.007 264);
+  --input: oklch(0.9 0.006 264);
+  --primary: oklch(0.55 0.165 268);
+  --primary-hover: oklch(0.5 0.17 268);
+  --primary-foreground: oklch(0.99 0.004 268);
+  --primary-soft: oklch(0.95 0.025 268);
+  --primary-soft-foreground: oklch(0.45 0.15 268);
+  --accent: oklch(0.955 0.006 264);
+  --ring: oklch(0.6 0.15 268 / 0.45);
+  --success: oklch(0.6 0.13 160);
+  --success-soft: oklch(0.955 0.03 160);
+  --success-soft-foreground: oklch(0.42 0.1 160);
+  --warning: oklch(0.72 0.14 70);
+  --warning-soft: oklch(0.965 0.04 85);
+  --warning-soft-foreground: oklch(0.47 0.1 60);
+  --danger: oklch(0.58 0.19 25);
+  --danger-hover: oklch(0.53 0.19 25);
+  --danger-soft: oklch(0.96 0.025 25);
+  --danger-soft-foreground: oklch(0.5 0.17 25);
+  --bubble-in: oklch(1 0 0);
+  --bubble-out: oklch(0.93 0.04 268);
+  --chat-backdrop: oklch(0.968 0.006 264);
+  --sidebar: oklch(0.975 0.003 264);
+  --shadow-color: 230 20% 20%;
+}
+
+.dark {
+  --background: oklch(0.17 0.008 265);
+  --foreground: oklch(0.94 0.005 265);
+  --surface: oklch(0.205 0.009 265);
+  --surface-2: oklch(0.225 0.009 265);
+  --muted: oklch(0.245 0.01 265);
+  --muted-foreground: oklch(0.7 0.012 265);
+  --subtle-foreground: oklch(0.58 0.012 265);
+  --border: oklch(0.28 0.01 265);
+  --border-strong: oklch(0.34 0.012 265);
+  --input: oklch(0.32 0.012 265);
+  --primary: oklch(0.66 0.15 270);
+  --primary-hover: oklch(0.71 0.14 270);
+  --primary-foreground: oklch(0.16 0.02 270);
+  --primary-soft: oklch(0.3 0.06 270);
+  --primary-soft-foreground: oklch(0.84 0.08 270);
+  --accent: oklch(0.255 0.01 265);
+  --ring: oklch(0.7 0.13 270 / 0.5);
+  --success: oklch(0.7 0.13 160);
+  --success-soft: oklch(0.29 0.045 160);
+  --success-soft-foreground: oklch(0.84 0.09 160);
+  --warning: oklch(0.78 0.13 75);
+  --warning-soft: oklch(0.3 0.05 75);
+  --warning-soft-foreground: oklch(0.87 0.1 85);
+  --danger: oklch(0.66 0.17 25);
+  --danger-hover: oklch(0.7 0.16 25);
+  --danger-soft: oklch(0.3 0.06 25);
+  --danger-soft-foreground: oklch(0.85 0.08 25);
+  --bubble-in: oklch(0.24 0.01 265);
+  --bubble-out: oklch(0.36 0.07 270);
+  --chat-backdrop: oklch(0.185 0.008 265);
+  --sidebar: oklch(0.19 0.008 265);
+  --shadow-color: 230 30% 2%;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-accent: var(--accent);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-foreground: var(--success-soft-foreground);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-foreground: var(--warning-soft-foreground);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-soft-foreground: var(--danger-soft-foreground);
+  --color-bubble-in: var(--bubble-in);
+  --color-bubble-out: var(--bubble-out);
+  --color-chat-backdrop: var(--chat-backdrop);
+  --color-sidebar: var(--sidebar);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  --shadow-xs: 0 1px 2px hsl(var(--shadow-color) / 0.05);
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.04), 0 1px 3px hsl(var(--shadow-color) / 0.06);
+  --shadow-md: 0 2px 4px hsl(var(--shadow-color) / 0.04), 0 6px 16px hsl(var(--shadow-color) / 0.08);
+  --shadow-lg: 0 8px 24px hsl(var(--shadow-color) / 0.1), 0 24px 56px hsl(var(--shadow-color) / 0.14);
+
+  --animate-enter: enter 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-fade: fade 160ms ease-out;
+  --animate-pop: pop 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(4px);
+  }
+}
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  ::selection {
+    background: var(--color-primary-soft);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

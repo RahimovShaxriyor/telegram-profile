@@ -1,0 +1,29 @@
+# TPAM behind Caddy (automatic HTTPS from Let's Encrypt). Fill .env first — see docs/DEPLOY.md.
+services:
+  tpam:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TPAM_PUBLIC_URL: https://${TPAM_DOMAIN:?set TPAM_DOMAIN in .env}
+      TPAM_TRUST_PROXY: "true"
+    volumes:
+      - tpam-data:/data
+    expose:
+      - "8765"
+
+  caddy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    command: caddy reverse-proxy --from ${TPAM_DOMAIN} --to tpam:8765
+    volumes:
+      - caddy-data:/data
+    depends_on:
+      - tpam
+
+volumes:
+  tpam-data:
+  caddy-data:
